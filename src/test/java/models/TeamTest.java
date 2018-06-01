@@ -75,6 +75,9 @@ public class TeamTest {
         Team newTeam = setupNewTeam();
         Team team2 = setupNewTeam();
         Team team3 = setupNewTeam();
+        assertTrue(Team.getTeams().contains(newTeam));
+        assertTrue(Team.getTeams().contains(team2));
+        assertTrue(Team.getTeams().contains(team3));
         assertEquals(3, Team.getTeams().size());
     }
 
