@@ -121,6 +121,7 @@ public class TeamTest {
         newTeam.addNewMember("carl");
         newTeam.addNewMember("serkis");
         newTeam.updateMember("andy", 2);
+        assertTrue(newTeam.getMembers().contains("andy"));
         assertEquals(3, newTeam.getMembers().size());
     }
 

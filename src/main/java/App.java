@@ -67,9 +67,9 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //Routing for removing a team member
-        get("/teams/:teamName/remove:member", (request, response) -> {
+        get("/teams/:team/removeMember/:member", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            Team detailsTeam = Team.getTeamByTeamName("teamName");
+            Team detailsTeam = Team.getTeamByTeamName(request.params("team"));
             detailsTeam.removeMember(request.params("member"));
             model.put("detailsTeam", detailsTeam);
             return new ModelAndView(model, "editTeamDetails.hbs");
@@ -104,12 +104,17 @@ public class App {
             String newTeamName = request.queryParams("teamName");
             String newTeamDescription = request.queryParams("teamDescription");
             List<String> newMembers = new ArrayList<>();
+            List<String> updateCurrentMembers = new ArrayList<>();
 
             newMembers.add(request.queryParams("teamMembers"));
             newMembers.add(request.queryParams("teamMembers2"));
             newMembers.add(request.queryParams("teamMembers3"));
             newMembers.add(request.queryParams("teamMembers4"));
             newMembers.add(request.queryParams("teamMembers5"));
+
+            for (int i=0; i<=detailsTeam.getMembers().size(); i++) {
+                detailsTeam.updateMember(request.queryParams("currentMember"+i), i);
+            }
 
             for (String newMember: newMembers) {
                 detailsTeam.addNewMember(newMember);

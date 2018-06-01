@@ -15,12 +15,12 @@
         <br>
         <hr>
         <label for="teamDescription">Description of your team:</label>
-        <textarea name="teamDescription" id="teamDescription" class="form-control" value="{{detailsTeam.teamDescription}}" rows="3"></textarea>
+        <input name="teamDescription" id="teamDescription" class="form-control" value="{{detailsTeam.teamDescription}}">
         <br>
         <hr>
         <ul> Current members:
             {{#each detailsTeam.members}}
-                <li><input type="text" name="currentMember{{@index}}" value="{{this}}"><a href="/teams/{{detailsTeam.teamName}}/remove{{this}}"><button class="btn-sm btn-warning">Remove Member</button></a></li>
+                <li><input type="text" name="currentMember{{@index}}" value="{{this}}"><button class="btn-sm btn-default"><a href="/teams/{{detailsTeam.teamName}}/removeMember/{{this}}">Remove Member</a></button></li>
             {{/each}}
         </ul>
         <label for="teamMembers">Add your team members below:</label>
