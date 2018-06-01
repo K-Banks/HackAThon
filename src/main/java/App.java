@@ -104,7 +104,6 @@ public class App {
             String newTeamName = request.queryParams("teamName");
             String newTeamDescription = request.queryParams("teamDescription");
             List<String> newMembers = new ArrayList<>();
-            List<String> updateCurrentMembers = new ArrayList<>();
 
             newMembers.add(request.queryParams("teamMembers"));
             newMembers.add(request.queryParams("teamMembers2"));
@@ -112,8 +111,10 @@ public class App {
             newMembers.add(request.queryParams("teamMembers4"));
             newMembers.add(request.queryParams("teamMembers5"));
 
-            for (int i=0; i<=detailsTeam.getMembers().size(); i++) {
-                detailsTeam.updateMember(request.queryParams("currentMember"+i), i);
+            for (int i=0; i<detailsTeam.getMembers().size(); i++) {
+                String currentMember = "currentMember" + (i);
+                String newMemberName = request.queryParams(currentMember);
+                detailsTeam.updateMember(newMemberName, i);
             }
 
             for (String newMember: newMembers) {
