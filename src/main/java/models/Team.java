@@ -63,10 +63,6 @@ public class Team {
     }
 
     public void removeMember(String memberToRemove) {
-        for (String member:members) {
-            if (member.equals(memberToRemove)) {
-//                members.remove(member);
-            }
-        }
+        members.remove(memberToRemove);
     }
 }
