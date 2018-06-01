@@ -14,7 +14,6 @@
                 <li>
                     <h2><strong>{{this.teamName}}</strong></h2>
                     <h3><small>Team description: </small>{{this.teamDescription}}</h3>
-                    <a href="/teams/{{this.teamName}}"><button class="btn btn-info">Details</button></a>
                     {{#if manualNav}}
                         <ul>Members:
                             {{#each this.members}}
@@ -22,6 +21,7 @@
                             {{/each}}
                         </ul>
                     {{/if}}
+                    <a href="/teams/{{this.teamName}}"><button class="btn btn-info">Details</button></a>
                 </li>
             {{/each}}
         </ul>
