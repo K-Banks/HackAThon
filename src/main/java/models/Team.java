@@ -35,4 +35,8 @@ public class Team {
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
+
+    public void addNewMember(String newMember) {
+        this.members.add("");
+    }
 }

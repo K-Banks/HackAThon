@@ -61,6 +61,14 @@ public class TeamTest {
         assertTrue(newTeam.getTeamName().equals(expected));
     }
 
+    @Test
+    public void addNewMember_addsNewMemberToMemberListArrayInTeam_true() {
+        Team newTeam = setupNewTeam();
+        String newMember = "Hambone Fakenamington";
+        newTeam.addNewMember(newMember);
+        assertTrue(newTeam.getMembers().contains(newMember));
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }
