@@ -1,7 +1,7 @@
 {{#partial "content"}}
     <h2>Fill out this form to submit your new team.</h2>
 
-    <form action="/teams">
+    <form action="/teams" method="post">
         <label for="teamName">What's your Team Name?</label>
         <br>
         <br>
@@ -30,7 +30,7 @@
         <input type="text" name="teamMembers5" id="teamMembers5">
         <br>
         <br>
-        <button type="submit" class="btn btn-info btn-lg">Submit</button>
+        <button type="submit" class="btn btn-info">Submit</button>
     </form>
 {{/partial}}
 
