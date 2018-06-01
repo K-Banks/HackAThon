@@ -3,16 +3,34 @@
 
     <form action="/teams">
         <label for="teamName">What's your Team Name?</label>
-        <input type="text" id="teamName" name="teamName">
+        <br>
+        <br>
+        <input class="form-control" type="text" id="teamName" name="teamName">
         <br>
         <hr>
-        <label for="teamDescription">Describe your team:</label>
+        <label for="teamDescription">Describe your team (additional members can be added from the team details page):</label>
         <textarea class="form-control" rows="3" name="teamDescription" id="teamDescription"></textarea>
         <br>
         <hr>
-        <label for="teamMembers">Add your team members below (separate names with a comma ','):</label>
+        <label for="teamMembers">Add your team members below:</label>
+        <br>
+        <br>
         <input type="text" name="teamMembers" id="teamMembers">
-        <button type="submit" class="btn btn-info">Submit</button>
+        <br>
+        <br>
+        <input type="text" name="teamMembers2" id="teamMembers2">
+        <br>
+        <br>
+        <input type="text" name="teamMembers3" id="teamMembers3">
+        <br>
+        <br>
+        <input type="text" name="teamMembers4" id="teamMembers4">
+        <br>
+        <br>
+        <input type="text" name="teamMembers5" id="teamMembers5">
+        <br>
+        <br>
+        <button type="submit" class="btn btn-info btn-lg">Submit</button>
     </form>
 {{/partial}}
 
