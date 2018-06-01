@@ -64,8 +64,10 @@ public class App {
 
         get("/teams/:teamName", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-
-            return new ModelAndView(model, "index.hbs");
+            String searchTeamName = request.params("teamName");
+            Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
+            model.put("detailsTeam", detailsTeam);
+            return new ModelAndView(model, "details.hbs");
         }, new HandlebarsTemplateEngine());
     }
 }

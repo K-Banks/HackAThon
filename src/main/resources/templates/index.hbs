@@ -11,13 +11,7 @@
                 <li>
                     <h2><strong>{{this.teamName}}</strong></h2>
                     <h3><small>Team description: </small>{{this.teamDescription}}</h3>
-                    <h3>Members:</h3>
-                    <ul>
-                        {{#each this.members}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                        <a href="/teams/{{this.teamName}}"><button class="btn btn-info">Details</button></a>
-                    </ul>
+                    <a href="/teams/{{this.teamName}}"><button class="btn btn-info">Details</button></a>
                 </li>
             {{/each}}
         </ul>
