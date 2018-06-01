@@ -1,0 +1,25 @@
+{{#partial "content"}}
+    <h3>Welcome to the least exclusive Hack-A-Thon on the web!</h3>
+    <h4>Grab your friends (or the people immediately to your left) and make a team, it's time to hack.</h4>
+
+    <a href="/team/new"><button class="btn btn-info">Create my team!</button></a>
+
+    {{#if Team.teams}}
+        <ul>
+            {{#each Team.teams}}
+                <li>
+                    {{this.teamName}}
+                    {{this.teamDescription}}
+                    <ul>
+                        {{#each this.members}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+
+{{/partial}}
+
+{{> layout.hbs}}
