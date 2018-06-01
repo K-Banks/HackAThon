@@ -46,4 +46,15 @@ public class Team {
     public static List<Team> getTeams() {
         return teams;
     }
+
+    public static Team getTeamByTeamName(String searchTeamName) {
+        int teamIndex = 0;
+        for (Team team : teams) {
+            if (team.teamName.equals(searchTeamName)) {
+                break;
+            }
+            teamIndex ++;
+        }
+        return teams.get(teamIndex);
+    }
 }
