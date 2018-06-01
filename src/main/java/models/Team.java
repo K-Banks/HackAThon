@@ -9,4 +9,8 @@ public class Team {
 
     public Team() {
     }
+
+    public String getTeamName() {
+        return null;
+    }
 }

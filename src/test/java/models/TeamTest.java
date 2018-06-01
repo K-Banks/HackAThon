@@ -18,7 +18,17 @@ public class TeamTest {
 
     @Test
     public void Team_instatiatesNewTeam_true() {
-        Team newTeam = new Team();
+        Team newTeam = setupNewTeam();
         assertTrue(newTeam instanceof Team);
+    }
+
+    @Test
+    public void getTeamName_returnsTeamName_true() {
+        Team newTeam = setupNewTeam();
+        assertTrue(newTeam.getTeamName() instanceof String);
+    }
+
+    private Team setupNewTeam() {
+        return new Team();
     }
 }
