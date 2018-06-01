@@ -7,9 +7,11 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="/">Home</a></li>
-    <li role="presentation" class=""><a href="/about">About Time2Hack</a></li>
-    <li role="presentation" class=""><a href="/teams">Teams</a></li>
+    {{#block "nav"}}
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation" class=""><a href="/about">About Time2Hack</a></li>
+        <li role="presentation" class=""><a href="/teams">Teams</a></li>
+    {{/block}}
 </ul>
 <div class="container">
     <!--begin main template-->
