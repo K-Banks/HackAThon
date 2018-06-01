@@ -17,6 +17,7 @@ public class TeamTest {
 
     @After
     public void tearDown() throws Exception {
+        Team.getTeams().clear();
     }
 
     @Test

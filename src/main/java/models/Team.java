@@ -13,12 +13,14 @@ public class Team {
         members = new ArrayList<>();
         teamName = "";
         teamDescription = "";
+        teams.add(this);
     }
 
     public Team(List<String> members, String teamName, String teamDescription) {
         this.members = members;
         this.teamName = teamName;
         this.teamDescription = teamDescription;
+        teams.add(this);
     }
 
     public String getTeamName() {
