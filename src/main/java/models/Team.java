@@ -61,4 +61,12 @@ public class Team {
         }
         return teams.get(teamIndex);
     }
+
+    public void removeMember(String memberToRemove) {
+        for (String member:members) {
+            if (member.equals(memberToRemove)) {
+//                members.remove(member);
+            }
+        }
+    }
 }

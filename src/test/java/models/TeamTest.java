@@ -104,6 +104,16 @@ public class TeamTest {
         assertTrue(newTeam.getTeamDescription().equals(expected));
     }
 
+    @Test
+    public void removeMember_removesMemberOfTeam_true() {
+        Team newTeam = setupNewTeam();
+        newTeam.addNewMember("steven");
+        newTeam.addNewMember("carl");
+        newTeam.addNewMember("circus");
+        newTeam.removeMember("circus");
+        assertEquals(2, newTeam.getMembers().size());
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }
