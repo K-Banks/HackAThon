@@ -43,6 +43,8 @@ public class Team {
         this.members.add(newMember);
     }
 
+    public void setTeamDescription(String newDescription) { }
+
     public static List<Team> getTeams() {
         return teams;
     }
