@@ -37,6 +37,6 @@ public class Team {
     }
 
     public void addNewMember(String newMember) {
-        this.members.add("");
+        this.members.add(newMember);
     }
 }
