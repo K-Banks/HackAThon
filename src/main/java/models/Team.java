@@ -7,6 +7,7 @@ public class Team {
     private List<String> members;
     private String teamName;
     private String teamDescription;
+    private static List<Team> teams = new ArrayList<>();
 
     public Team() {
         members = new ArrayList<>();
@@ -38,5 +39,9 @@ public class Team {
 
     public void addNewMember(String newMember) {
         this.members.add(newMember);
+    }
+
+    public static List<Team> getTeams() {
+        return teams;
     }
 }

@@ -69,6 +69,14 @@ public class TeamTest {
         assertTrue(newTeam.getMembers().contains(newMember));
     }
 
+    @Test
+    public void getTeams_returnsAllTeamObjects_3() {
+        Team newTeam = setupNewTeam();
+        Team team2 = setupNewTeam();
+        Team team3 = setupNewTeam();
+        assertEquals(3, Team.getTeams().size());
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }
