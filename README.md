@@ -4,11 +4,11 @@
 
 ## Description
 
-_This application will take user selected options for an event planning service and offer an estimate on the event._
+_This application is designed for organizing teams for a Hack-A-Thon style event. Users will be able to submit a team with members, a team name, and a brief description. Users will also be able to update teams._
 
 ## Setup/Installation Requirement for Developers:
 
-* Clone repository on your local computer from https://github.com/K-Banks/Event-Planner.
+* Clone repository on your local computer from https://github.com/K-Banks/HackAThon.
 * If you already have Java and IntelliJ IDEA installed, then skip to "Running Application"
 
   #### Java Installation Instructions:
@@ -35,6 +35,14 @@ _This application will take user selected options for an event planning service 
   * Press 'Run'
   * Follow instructions given by program
 
+## Specs
+ * User will be able to create a new team. Upon creation, user will provide:
+    * A list of member names
+    * A team name
+    * A brief description of the team
+ * User will be able to add members to the team after initial submission.
+ * User will be able to change team name of a team after initial submission.
+
 ## Known Bugs
 
 _No known bugs at this time._
@@ -46,11 +54,8 @@ _Please contact author at kayleubanks@gmail.com with any bugs._
  * IntelliJ IDEA
  * Gradle
  * JUnit
-
-### Specs
-
- * User will be able to input a series of parameters for an event (ie: number of guests, type of entertainment, drinks to be provided, ect.)
- * User will receive an estimate of the total cost of the event based on provided parameters
+ * Spark
+ * Handlebars/Mustache
 
 ### License
 
