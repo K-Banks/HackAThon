@@ -4,12 +4,14 @@
 
     <a href="/team/new"><button class="btn btn-info">Create my team!</button></a>
 
-    {{#if Team.teams}}
+    {{#if Team}}
+        <h2><large>Current Teams:</large></h2>
         <ul>
-            {{#each Team.teams}}
+            {{#each Team}}
                 <li>
-                    {{this.teamName}}
-                    {{this.teamDescription}}
+                    <h2>{{this.teamName}}</h2>
+                    <h3><small>Team description: </small>{{this.teamDescription}}</h3>
+                    <h3>Members:</h3>
                     <ul>
                         {{#each this.members}}
                             <li>{{this}}</li>
