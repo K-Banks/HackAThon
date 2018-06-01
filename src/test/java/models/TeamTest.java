@@ -38,6 +38,12 @@ public class TeamTest {
         assertEquals(expected.getClass(), newTeam.getMembers().getClass());
     }
 
+    @Test
+    public void getTeamDescription_returnsTeamDescription_true() {
+        Team newTeam = setupNewTeam();
+        assertTrue(newTeam.getTeamDescription() instanceof String);
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }

@@ -21,4 +21,8 @@ public class Team {
     public List<String> getMembers() {
         return members;
     }
+
+    public String getTeamDescription() {
+        return null;
+    }
 }
