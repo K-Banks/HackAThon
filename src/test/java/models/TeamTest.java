@@ -53,6 +53,14 @@ public class TeamTest {
         assertNotEquals(newTeam, testTeam);
     }
 
+    @Test
+    public void setTeamName_setsTeamNameAsNewString_true() {
+        Team newTeam = setupNewTeam();
+        String expected = "New Team Name";
+        newTeam.setTeamName(expected);
+        assertTrue(newTeam.getTeamName().equals(expected));
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }

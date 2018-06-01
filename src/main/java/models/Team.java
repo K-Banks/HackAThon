@@ -31,4 +31,8 @@ public class Team {
     public String getTeamDescription() {
         return teamDescription;
     }
+
+    public void setTeamName(String teamName) {
+
+    }
 }
