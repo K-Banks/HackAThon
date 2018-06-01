@@ -33,7 +33,7 @@ _This application is designed for organizing teams for a Hack-A-Thon style event
   * Select src -> main -> java -> App.java
   * Right click on App.java
   * Press 'Run'
-  * Follow instructions given by program
+  * Open web browser to local host ip address given in the run window
 
 ## Specs
  * User will be able to create a new team. Upon creation, user will provide:
@@ -48,8 +48,9 @@ _This application is designed for organizing teams for a Hack-A-Thon style event
 
 ## Known Bugs
 
-_No known bugs at this time._
-_Please contact author at kayleubanks@gmail.com with any bugs._
+_All members can be removed from a team, undermining requirement that teams start with at least one member._
+_Team name can be changed to an invalid name after initial submission._
+_Please contact author at kayleubanks@gmail.com with any additional bugs._
 
 ## Technologies Used
 
