@@ -67,7 +67,41 @@ public class App {
             String searchTeamName = request.params("teamName");
             Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
             model.put("detailsTeam", detailsTeam);
-            return new ModelAndView(model, "details.hbs");
+            return new ModelAndView(model, "teamDetails.hbs");
         }, new HandlebarsTemplateEngine());
+
+        get("/teams/:teamName/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String searchTeamName = request.params("teamName");
+            Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
+            model.put("detailsTeam", detailsTeam);
+            return new ModelAndView(model, "editDetails.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/teams/:teamName", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            Team detailsTeam = Team.getTeamByTeamName(request.params("teamName"));
+            String newTeamName = request.queryParams("teamName");
+            String newTeamDescription = request.queryParams("teamDescription");
+            List<String> newMembers = new ArrayList<>();
+
+            newMembers.add(request.queryParams("teamMembers"));
+            newMembers.add(request.queryParams("teamMembers2"));
+            newMembers.add(request.queryParams("teamMembers3"));
+            newMembers.add(request.queryParams("teamMembers4"));
+            newMembers.add(request.queryParams("teamMembers5"));
+            while (newMembers.contains("")) {
+                newMembers.remove("");
+            }
+
+            for (String newMember: newMembers) {
+                detailsTeam.addNewMember(newMember);
+            }
+
+            detailsTeam.setTeamName(newTeamName);
+            detailsTeam.setTeamDescription(newTeamDescription);
+
+            return new ModelAndView(model, "teamDetails.hbs");
+        } new HandlebarsTemplateEngine());
     }
 }
