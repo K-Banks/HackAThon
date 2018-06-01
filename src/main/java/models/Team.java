@@ -14,6 +14,10 @@ public class Team {
         teamDescription = "";
     }
 
+    public Team(List<String> members, String teamName, String teamDescription) {
+
+    }
+
     public String getTeamName() {
         return teamName;
     }

@@ -44,6 +44,15 @@ public class TeamTest {
         assertTrue(newTeam.getTeamDescription() instanceof String);
     }
 
+    @Test
+    public void Team_instantiateNewTeamWithProvidedParameters_notEquals() {
+        Team newTeam = setupNewTeam();
+        List<String> members = new ArrayList<>();
+        members.add("Kyle");
+        Team testTeam = new Team(members, "teamName", "this is a description");
+        assertNotEquals(newTeam, testTeam);
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }
