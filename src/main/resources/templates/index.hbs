@@ -1,6 +1,14 @@
+{{#if manualNav}}
+    {{#partial "nav"}}
+        <li role="presentation" class=""><a href="/">Home</a></li>
+        <li role="presentation" class=""><a href="/about">About Time2Hack</a></li>
+        <li role="presentation" class="active"><a href="/teams">Teams</a></li>
+    {{/partial}}
+{{/if}}
+
 {{#partial "content"}}
     {{#if manualNav}}
-        <h1>Here are the list of teams participating in Time2Hack</h1>
+        <h2><strong>Here are the list of teams participating in Time2Hack</strong></h2>
     {{else}}
         <h3>Welcome to the least exclusive Hack-A-Thon on the web!</h3>
         <h4>Grab your friends (or the people immediately to your left) and make a team, it's time to hack.</h4>

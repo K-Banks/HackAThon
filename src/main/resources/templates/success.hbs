@@ -6,7 +6,9 @@
 
 {{#partial "content"}}
     <h1>Success!, your team ({{newTeam.teamName}}) has been added to the event.</h1>
-    <a href="/">Go back to the homepage to see your team's details.</a>
+    <a href="/teams/{{newTeam.teamName}}">View your team details.</a>
+    <br>
+    <a href="/">Home</a>
 {{/partial}}
 
 {{> layout.hbs}}

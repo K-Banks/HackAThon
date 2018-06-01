@@ -10,11 +10,11 @@
 
 {{#partial "content"}}
     <form action="/teams/{{detailsTeam.teamName}}" method="post">
-        <label for="teamName"></label>
+        <label for="teamName">Team name:</label>
         <input type="text" id="teamName" name="teamName" value="{{detailsTeam.teamName}}">
         <br>
         <hr>
-        <label for="teamDescription"></label>
+        <label for="teamDescription">Description of your team:</label>
         <textarea name="teamDescription" id="teamDescription" class="form-control" value="{{detailsTeam.teamDescription}}" rows="3"></textarea>
         <br>
         <hr>
