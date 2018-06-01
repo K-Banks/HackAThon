@@ -75,7 +75,8 @@ public class App {
             return new ModelAndView(model, "editTeamDetails.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/teamms/:teamName/delete", (request, response) -> {
+        //Routing to remove a team
+        get("/teams/:teamName/delete", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             Team deleteTeam = Team.getTeamByTeamName(request.params("teamName"));
             Team.deleteTeam(deleteTeam);
@@ -96,8 +97,13 @@ public class App {
             members.add(request.queryParams("teamMembers4"));
             members.add(request.queryParams("teamMembers5"));
 
-            Team newTeam = new Team(members, teamName, teamDescription);
-            model.put("newTeam", newTeam);
+
+            if (teamName.equals("") || members.size()==0){
+                model.put("invalidSubmission", true);
+            } else {
+                Team newTeam = new Team(members, teamName, teamDescription);
+                model.put("newTeam", newTeam);
+            }
 
             List<Team> team = Team.getTeams();
             model.put("Team", team);
