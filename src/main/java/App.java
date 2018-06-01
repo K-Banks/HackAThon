@@ -22,7 +22,7 @@ public class App {
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             List<Team> team = Team.getTeams();
-            if (team.size() > 0) {
+            if (team.size() == 0) {
                 model.put("Team", team);
             }
             return new ModelAndView(model, "index.hbs");
@@ -32,5 +32,36 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "newTeamForm.hbs");
         }, new HandlebarsTemplateEngine());
+
+        post("/teams", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<String> members = new ArrayList<>();
+
+            String teamName = request.params("teamName");
+            String teamDescription = request.params("teamDescription");
+            members.add(request.params("teamMembers"));
+            members.add(request.params("teamMembers2"));
+            members.add(request.params("teamMembers3"));
+            members.add(request.params("teamMembers4"));
+            members.add(request.params("teamMembers5"));
+            if (members.contains("")) {
+                members.remove("");
+            }
+
+            Team newTeam = new Team(members, teamName, teamDescription);
+            model.put("newTeam", newTeam);
+
+            List<Team> team = Team.getTeams();
+            model.put("Team", team);
+
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+//        get("/teams", (request, response) -> {
+//            Map<String, Object> model = new HashMap<>();
+//            List<Team> team = Team.getTeams();
+//            model.put("Team", team);
+//            return new ModelAndView(model, "index.hbs");
+//        }, new HandlebarsTemplateEngine());
     }
 }
