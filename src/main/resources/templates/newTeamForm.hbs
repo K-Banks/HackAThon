@@ -1,0 +1,19 @@
+{{#partial "content"}}
+    <h2>Fill out this form to submit your new team.</h2>
+
+    <form action="/teams">
+        <label for="teamName">What's your Team Name?</label>
+        <input type="text" id="teamName" name="teamName">
+        <br>
+        <hr>
+        <label for="teamDescription">Describe your team:</label>
+        <textarea class="form-control" rows="3" name="teamDescription" id="teamDescription"></textarea>
+        <br>
+        <hr>
+        <label for="teamMembers">Add your team members below (separate names with a comma ','):</label>
+        <input type="text" name="teamMembers" id="teamMembers">
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+{{/partial}}
+
+{{> layout.hbs}}

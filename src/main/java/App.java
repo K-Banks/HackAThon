@@ -15,9 +15,9 @@ public class App {
         staticFileLocation("/public");
 
         // Temporary Team Creation for testing
-        List<String> newMembers = new ArrayList<>();
-        newMembers.add("LawDog");
-        Team newTeam = new Team(newMembers, "I'm the Law, Dog", "ElOhEl");
+//        List<String> newMembers = new ArrayList<>();
+//        newMembers.add("LawDog");
+//        Team newTeam = new Team(newMembers, "I'm the Law, Dog", "ElOhEl");
 
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
@@ -26,6 +26,11 @@ public class App {
                 model.put("Team", team);
             }
             return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/teams/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "newTeamForm.hbs");
         }, new HandlebarsTemplateEngine());
     }
 }
