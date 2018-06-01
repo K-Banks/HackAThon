@@ -62,6 +62,10 @@ public class Team {
         return teams.get(teamIndex);
     }
 
+    public static void deleteTeam(Team teamToDelete) {
+
+    }
+
     public void removeMember(String memberToRemove) {
         members.remove(memberToRemove);
     }

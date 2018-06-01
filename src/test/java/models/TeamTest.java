@@ -125,6 +125,15 @@ public class TeamTest {
         assertEquals(3, newTeam.getMembers().size());
     }
 
+    @Test
+    public void deleteTeam_removesTeamFromTeams_false() {
+        Team newTeam = setupNewTeam();
+        Team team2 = setupNewTeam();
+        Team team3 = setupNewTeam();
+        Team.deleteTeam(team2);
+        assertFalse(Team.getTeams().contains(team2));
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }
