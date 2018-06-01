@@ -19,6 +19,7 @@ public class App {
         testMembers.add("LawDog");
         Team testTeam = new Team(testMembers, "I'm the Law, Dog", "ElOhEl");
 
+        // Routing for homepage
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             List<Team> team = Team.getTeams();
@@ -26,11 +27,46 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
+        // Routing for new team form
         get("/teams/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "newTeamForm.hbs");
         }, new HandlebarsTemplateEngine());
 
+        // Routing for teams page using nav tab
+        get("/teams", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Team> team = Team.getTeams();
+            model.put("Team", team);
+            model.put("manualNav", true);
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // Dynamic routing for team details
+        get("/teams/:teamName", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String searchTeamName = request.params("teamName");
+            Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
+            model.put("detailsTeam", detailsTeam);
+            return new ModelAndView(model, "teamDetails.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // Routing for editing team details form
+        get("/teams/:teamName/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String searchTeamName = request.params("teamName");
+            Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
+            model.put("detailsTeam", detailsTeam);
+            return new ModelAndView(model, "editTeamDetails.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //Routing for about page
+        get("/about", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "about.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //Form submission for new teams
         post("/teams", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             List<String> members = new ArrayList<>();
@@ -52,30 +88,7 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/teams", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-            List<Team> team = Team.getTeams();
-            model.put("Team", team);
-            model.put("manualNav", true);
-            return new ModelAndView(model, "index.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        get("/teams/:teamName", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-            String searchTeamName = request.params("teamName");
-            Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
-            model.put("detailsTeam", detailsTeam);
-            return new ModelAndView(model, "teamDetails.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        get("/teams/:teamName/edit", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-            String searchTeamName = request.params("teamName");
-            Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
-            model.put("detailsTeam", detailsTeam);
-            return new ModelAndView(model, "editTeamDetails.hbs");
-        }, new HandlebarsTemplateEngine());
-
+        // Form submission for team detail edits
         post("/teams/:teamName", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             Team detailsTeam = Team.getTeamByTeamName(request.params("teamName"));
@@ -101,6 +114,7 @@ public class App {
             return new ModelAndView(model, "teamDetails.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //Form submission for single member addition to a team
         post("/teams/:teamName/addMember", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             Team detailsTeam = Team.getTeamByTeamName(request.params("teamName"));
