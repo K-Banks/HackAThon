@@ -75,6 +75,14 @@ public class App {
             return new ModelAndView(model, "editTeamDetails.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/teamms/:teamName/delete", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            Team deleteTeam = Team.getTeamByTeamName(request.params("teamName"));
+            Team.deleteTeam(deleteTeam);
+            model.put("deletedTeam", true);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //Form submission for new teams
         post("/teams", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
