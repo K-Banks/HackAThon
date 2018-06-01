@@ -43,7 +43,7 @@ public class Team {
         this.members.add(newMember);
     }
 
-    public void setTeamDescription(String newDescription) { }
+    public void setTeamDescription(String newDescription) { this.teamDescription = newDescription; }
 
     public static List<Team> getTeams() {
         return teams;
