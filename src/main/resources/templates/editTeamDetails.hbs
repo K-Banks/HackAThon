@@ -20,7 +20,7 @@
         <hr>
         <ul> Current members:
             {{#each detailsTeam.members}}
-                <li>{{this}}</li>
+                <li><input type="text" name="currentMember{{@index}}" value="{{this}}"><a href="/teams/{{detailsTeam.teamName}}/remove{{this}}"><button class="btn-sm btn-warning">Remove Member</button></a></li>
             {{/each}}
         </ul>
         <label for="teamMembers">Add your team members below:</label>

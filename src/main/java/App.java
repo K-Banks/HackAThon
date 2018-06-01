@@ -66,6 +66,15 @@ public class App {
             return new ModelAndView(model, "about.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //Routing for removing a team member
+        get("/teams/:teamName/remove:member", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            Team detailsTeam = Team.getTeamByTeamName("teamName");
+            detailsTeam.removeMember(request.params("member"));
+            model.put("detailsTeam", detailsTeam);
+            return new ModelAndView(model, "editTeamDetails.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //Form submission for new teams
         post("/teams", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
