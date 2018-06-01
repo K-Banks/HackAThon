@@ -40,9 +40,11 @@ _This application is designed for organizing teams for a Hack-A-Thon style event
     * A list of member names
     * A team name
     * A brief description of the team
- * User will be able to add members to the team after initial submission.
+ * User will be able to add or remove members of the team after initial submission.
  * User will be able to change team name of a team after initial submission.
  * User will be able to change description of the team after initial submission.
+ * User will be able to delete team after initial submission.
+ * User will be required to enter a valid team name and at least one member upon new team submission
 
 ## Known Bugs
 

@@ -14,11 +14,6 @@ public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
 
-        // Temporary Team Creation for testing
-        List<String> testMembers = new ArrayList<>();
-        testMembers.add("LawDog");
-        Team testTeam = new Team(testMembers, "I'm the Law, Dog", "ElOhEl");
-
         // Routing for homepage
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
