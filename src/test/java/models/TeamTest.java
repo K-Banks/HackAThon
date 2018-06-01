@@ -81,6 +81,21 @@ public class TeamTest {
         assertEquals(3, Team.getTeams().size());
     }
 
+    @Test
+    public void getTeamByTeamName_returnsTeamObjectWithSameNameAsSubmitted_true() {
+        Team newTeam = setupNewTeam();
+        Team team2 = setupNewTeam();
+        Team team3 = setupNewTeam();
+        List<String> members = new ArrayList<>();
+        members.add("Kyle");
+        Team testTeam = new Team(members, "teamName", "this is a description");
+        Team testTeam2 = new Team(members, "THISISATEAMNAME", "huh?");
+        Team expectedTeam1 = Team.getTeamByTeamName("teamName");
+        Team expectedTeam2 = Team.getTeamByTeamName("THISISATEAMNAME");
+        assertEquals(testTeam, expectedTeam1);
+        assertEquals(testTeam2, expectedTeam2);
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }
