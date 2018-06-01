@@ -15,7 +15,9 @@ public class Team {
     }
 
     public Team(List<String> members, String teamName, String teamDescription) {
-
+        this.members = members;
+        this.teamName = teamName;
+        this.teamDescription = teamDescription;
     }
 
     public String getTeamName() {
