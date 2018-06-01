@@ -15,9 +15,9 @@ public class App {
         staticFileLocation("/public");
 
         // Temporary Team Creation for testing
-//        List<String> newMembers = new ArrayList<>();
-//        newMembers.add("LawDog");
-//        Team testTeam = new Team(newMembers, "I'm the Law, Dog", "ElOhEl");
+        List<String> testMembers = new ArrayList<>();
+        testMembers.add("LawDog");
+        Team testTeam = new Team(testMembers, "I'm the Law, Dog", "ElOhEl");
 
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
@@ -42,9 +42,6 @@ public class App {
             members.add(request.queryParams("teamMembers3"));
             members.add(request.queryParams("teamMembers4"));
             members.add(request.queryParams("teamMembers5"));
-            while (members.contains("")) {
-                members.remove("");
-            }
 
             Team newTeam = new Team(members, teamName, teamDescription);
             model.put("newTeam", newTeam);
@@ -75,7 +72,7 @@ public class App {
             String searchTeamName = request.params("teamName");
             Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
             model.put("detailsTeam", detailsTeam);
-            return new ModelAndView(model, "editDetails.hbs");
+            return new ModelAndView(model, "editTeamDetails.hbs");
         }, new HandlebarsTemplateEngine());
 
         post("/teams/:teamName", (request, response) -> {
@@ -90,9 +87,6 @@ public class App {
             newMembers.add(request.queryParams("teamMembers3"));
             newMembers.add(request.queryParams("teamMembers4"));
             newMembers.add(request.queryParams("teamMembers5"));
-            while (newMembers.contains("")) {
-                newMembers.remove("");
-            }
 
             for (String newMember: newMembers) {
                 detailsTeam.addNewMember(newMember);
@@ -101,7 +95,17 @@ public class App {
             detailsTeam.setTeamName(newTeamName);
             detailsTeam.setTeamDescription(newTeamDescription);
 
+            model.put("detailsTeam", detailsTeam);
+
             return new ModelAndView(model, "teamDetails.hbs");
-        } new HandlebarsTemplateEngine());
+        }, new HandlebarsTemplateEngine());
+
+        post("/teams/:teamName/addMember", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            Team detailsTeam = Team.getTeamByTeamName(request.params("teamName"));
+            detailsTeam.addNewMember(request.queryParams("newMember"));
+            model.put("detailsTeam", detailsTeam);
+            return new ModelAndView(model, "teamDetails.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }

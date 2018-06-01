@@ -96,6 +96,14 @@ public class TeamTest {
         assertEquals(testTeam2, expectedTeam2);
     }
 
+    @Test
+    public void setTeamDescription_setsNewTeamDescription_equalsTrue() {
+        Team newTeam = setupNewTeam();
+        String expected = "new Team Description";
+        newTeam.setTeamDescription(expected);
+        assertTrue(newTeam.getTeamDescription().equals(expected));
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }

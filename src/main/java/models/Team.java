@@ -40,7 +40,9 @@ public class Team {
     }
 
     public void addNewMember(String newMember) {
-        this.members.add(newMember);
+        if (!newMember.equals("")) {
+            this.members.add(newMember);
+        }
     }
 
     public void setTeamDescription(String newDescription) { this.teamDescription = newDescription; }
