@@ -56,6 +56,7 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             List<Team> team = Team.getTeams();
             model.put("Team", team);
+            model.put("manualNav", true);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 

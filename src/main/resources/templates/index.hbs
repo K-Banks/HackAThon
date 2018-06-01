@@ -1,8 +1,11 @@
 {{#partial "content"}}
-    <h3>Welcome to the least exclusive Hack-A-Thon on the web!</h3>
-    <h4>Grab your friends (or the people immediately to your left) and make a team, it's time to hack.</h4>
-
-    <a href="/teams/new"><button class="btn btn-info">Create my team!</button></a>
+    {{#if manualNav}}
+        <h1>Here are the list of teams participating in Time2Hack</h1>
+    {{else}}
+        <h3>Welcome to the least exclusive Hack-A-Thon on the web!</h3>
+        <h4>Grab your friends (or the people immediately to your left) and make a team, it's time to hack.</h4>
+    {{/if}}
+        <a href="/teams/new"><button class="btn btn-info">Create my team!</button></a>
 
     {{#if Team}}
         <h2><large>Current Teams:</large></h2>
@@ -12,6 +15,13 @@
                     <h2><strong>{{this.teamName}}</strong></h2>
                     <h3><small>Team description: </small>{{this.teamDescription}}</h3>
                     <a href="/teams/{{this.teamName}}"><button class="btn btn-info">Details</button></a>
+                    {{#if manualNav}}
+                        <ul>Members:
+                            {{#each this.members}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
                 </li>
             {{/each}}
         </ul>
