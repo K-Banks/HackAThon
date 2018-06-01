@@ -65,4 +65,9 @@ public class Team {
     public void removeMember(String memberToRemove) {
         members.remove(memberToRemove);
     }
+
+    public void updateMember(String updatedName, int positionInArray) {
+        members.remove(positionInArray);
+//        this.addNewMember(updatedName);
+    }
 }

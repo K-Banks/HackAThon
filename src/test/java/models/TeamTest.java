@@ -114,6 +114,16 @@ public class TeamTest {
         assertEquals(2, newTeam.getMembers().size());
     }
 
+    @Test
+    public void updateMember_updatesMemberOfTeam_true() {
+        Team newTeam = setupNewTeam();
+        newTeam.addNewMember("steven");
+        newTeam.addNewMember("carl");
+        newTeam.addNewMember("serkis");
+        newTeam.updateMember("andy", 2);
+        assertEquals(3, newTeam.getMembers().size());
+    }
+
     private Team setupNewTeam() {
         return new Team();
     }
