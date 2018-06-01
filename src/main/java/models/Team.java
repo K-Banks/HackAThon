@@ -17,4 +17,8 @@ public class Team {
     public String getTeamName() {
         return teamName;
     }
+
+    public List<String> getMembers() {
+        return null;
+    }
 }
