@@ -15,16 +15,14 @@ public class App {
         staticFileLocation("/public");
 
         // Temporary Team Creation for testing
-        List<String> newMembers = new ArrayList<>();
-        newMembers.add("LawDog");
-        Team testTeam = new Team(newMembers, "I'm the Law, Dog", "ElOhEl");
+//        List<String> newMembers = new ArrayList<>();
+//        newMembers.add("LawDog");
+//        Team testTeam = new Team(newMembers, "I'm the Law, Dog", "ElOhEl");
 
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             List<Team> team = Team.getTeams();
-//            if (team.size() == 0) {
-                model.put("Team", team);
-//            }
+            model.put("Team", team);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -44,9 +42,9 @@ public class App {
             members.add(request.queryParams("teamMembers3"));
             members.add(request.queryParams("teamMembers4"));
             members.add(request.queryParams("teamMembers5"));
-//            if (members.contains("")) {
-//                members.remove("");
-//            }
+            while (members.contains("")) {
+                members.remove("");
+            }
 
             Team newTeam = new Team(members, teamName, teamDescription);
             model.put("newTeam", newTeam);
