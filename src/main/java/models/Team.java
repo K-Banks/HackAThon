@@ -63,7 +63,7 @@ public class Team {
     }
 
     public static void deleteTeam(Team teamToDelete) {
-
+        teams.remove(teamToDelete);
     }
 
     public void removeMember(String memberToRemove) {
