@@ -88,6 +88,13 @@ public class Sql2oMemberDao implements MemberDao {
 
     @Override
     public void clearAllMembersOfTeam(int teamId) {
-
+        String sql = "DELETE FROM members WHERE teamId=:teamId";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("teamId", teamId)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 }
