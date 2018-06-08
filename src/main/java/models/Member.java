@@ -42,6 +42,14 @@ public class Member {
         this.email = email;
     }
 
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
