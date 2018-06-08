@@ -73,14 +73,14 @@ public class App {
             return new ModelAndView(model, "about.hbs");
         }, new HandlebarsTemplateEngine());
 
-//        //Routing for removing a team member
-//        get("/teams/:team/removeMember/:member", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            Team detailsTeam = Team.getTeamByTeamName(request.params("team"));
-//            detailsTeam.removeMember(request.params("member"));
-//            model.put("detailsTeam", detailsTeam);
-//            return new ModelAndView(model, "editTeamDetails.hbs");
-//        }, new HandlebarsTemplateEngine());
+        //Routing for removing a team member
+        get("/teams/:teamId/members/:memberId/delete", (request, response) -> {
+            int teamId = Integer.parseInt(request.params("teamId"));
+            int memberId = Integer.parseInt(request.params("memberId"));
+            memberDao.deleteById(memberId);
+            response.redirect("/teams/"+teamId+"/edit");
+            return null;
+        }, new HandlebarsTemplateEngine());
 
         //Routing to remove a team
         get("/teams/:teamId/delete", (request, response) -> {
@@ -92,7 +92,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 //
         //Form submission for new teams
-        post("/teams", (request, response) -> {
+        post("/teams/add", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
 
             String teamName = request.queryParams("teamName");
@@ -115,6 +115,26 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        //Form submission for single member addition to a team
+        post("/teams/:teamId/members/add", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int teamId = Integer.parseInt(request.params("teamId"));
+            String name = request.queryParams("memberName");
+            String email = request.queryParams("memberEmail");
+            String about = request.queryParams("memberAbout");
+
+            if (name.equals("") || !email.contains("@")) {
+                model.put("invalidSubmission", true);
+                return new ModelAndView(model, "success.hbs");
+            } else {
+                Member newMember = new Member(name, email, about, teamId);
+                memberDao.add(newMember);
+
+                response.redirect("/teams/" + teamId + "/members/add");
+                return null;
+            }
+        }, new HandlebarsTemplateEngine());
+
         // Form submission for team detail edits
         post("/teams/:teamId", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
@@ -133,18 +153,18 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-//        //Form submission for single member addition to a team
-//        post("/teams/:teamName/addMember", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            Team detailsTeam = Team.getTeamByTeamName(request.params("teamName"));
-//            detailsTeam.addNewMember(request.queryParams("newMember"));
-//            model.put("detailsTeam", detailsTeam);
-//            return new ModelAndView(model, "teamDetails.hbs");
-//        }, new HandlebarsTemplateEngine());
-
         //GET member details page
 
-        //POST new member from team details page
+        //GET member add form from team details page
+        get("/teams/:teamId/members/add", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int teamId = Integer.parseInt(request.params("teamId"));
+            List<Member> members = memberDao.findByTeamId(teamId);
+            model.put("members", members);
+            Team team = teamDao.findById(teamId);
+            model.put("team", team);
+            return new ModelAndView(model, "new-member-form.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //POST member edit
 

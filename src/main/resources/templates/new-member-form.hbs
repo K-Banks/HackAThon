@@ -1,0 +1,37 @@
+{{#partial "title"}}
+    Time2Hack: {{team.name}}
+{{/partial}}
+
+{{#partial "nav"}}
+    <li role="presentation" class=""><a href="/">Home</a></li>
+    <li role="presentation" class=""><a href="/about">About Time2Hack</a></li>
+    <li role="presentation" class="active"><a href="/teams">Teams</a></li>
+{{/partial}}
+
+{{#partial "content"}}
+    <form action="/teams/{{team.id}}/members/add" method="post">
+        <label for="teamMembers">Add another team member below:</label>
+        <br>
+        <br>
+        <input type="text" name="memberName" id="memberName" placeholder="Name">
+        <br>
+        <br>
+        <label for="memberEmail">Enter new member email:</label>
+        <br>
+        <br>
+        <input type="text" name="memberEmail" id="memberEmail">
+        <br>
+        <br>
+        <label for="memberAbout">Give a few details about new member:</label>
+        <br>
+        <br>
+        <input type="text" name="memberAbout" id="memberAbout">
+        <br>
+        <br>
+        <button type="submit" class="btn btn-info">Add new member</button>
+    </form>
+    <br>
+    <button class="btn btn-default"><a href="/teams/{{team.id}}">Exit form</a></button>
+{{/partial}}
+
+{{> layout.hbs}}

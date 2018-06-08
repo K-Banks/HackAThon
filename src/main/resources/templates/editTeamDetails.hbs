@@ -21,34 +21,17 @@
     </form>
     <br>
     <button class="btn-sm btn-danger"><a href="/teams/{{detailsTeam.id}}/delete">Delete my team</a></button>
+    {{#if members}}
+        <hr>
+        <ul> Current members:
+            {{#each members}}
+                <li><input type="text" name="currentMember{{@index}}" value="{{name}}"><button class="btn-sm btn-default"><a href="/teams/{{detailsTeam.id}}/members/{{id}}/delete">Remove Member</a></button></li>
+            {{/each}}
+        </ul>
+    {{/if}}
     <hr>
-    <ul> Current members:
-        {{#each members}}
-            <li><input type="text" name="currentMember{{@index}}" value="{{name}}"><button class="btn-sm btn-default"><a href="/teams/{{detailsTeam.id}}/removeMember/{{id}}">Remove Member</a></button></li>
-        {{/each}}
-    </ul>
-    <hr>
-    <form action="/teams/{{detailsTeam.id}}/members/add"></form>
-        <label for="teamMembers">Add another team member below:</label>
-        <br>
-        <br>
-        <input type="text" name="memberName" id="memberName" placeholder="Name">
-        <br>
-        <br>
-        <label for="memberEmail">Enter new member email:</label>
-        <br>
-        <br>
-        <input type="text" name="memberEmail" id="memberEmail">
-        <br>
-        <br>
-        <label for="memberAbout">Give a few details about yourself:</label>
-        <br>
-        <br>
-        <input type="text" name="memberAbout" id="memberAbout">
-        <br>
-        <br>
-        <button type="submit" class="btn btn-info">Add new member</button>
-    </form>
+    <a href="/teams/{{detailsTeam.id}}/members/add"><button class="btn btn-info">Add more members</button></a>
+    <button class="btn btn-default"><a href="/teams/{{detailsTeam.id}}">Exit form</a></button>
 {{/partial}}
 
 {{> layout.hbs}}
