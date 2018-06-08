@@ -42,6 +42,13 @@ public class Sql2oMemberDaoTest {
         assertEquals(1, memberDao.getAll().size());
     }
 
+    @Test
+    public void findById_returnsMemberWithSpecifiedId() {
+        Member member = setupNewMember();
+        memberDao.add(member);
+        assertEquals(member.getId(), memberDao.findById(1).getId());
+    }
+
     private Member setupNewMember() {
         return new Member("Kayl", "kayleubanks@gmail.com", "about me", 2);
     }
