@@ -21,11 +21,6 @@
                 <a href="/teams/{{detailsTeam.name}}/members/{{id}}">Details</a>
             </li>
         {{/each}}
-        <form action="/teams/{{detailsTeam.teamName}}/addMember" method="post">
-            <label for="newMember">Add a new member:</label>
-            <input type="text" name="newMember" id="newMember">
-            <button type="submit" class="btn-sm btn-warning">Add</button>
-        </form>
     </ul>
     <a href="/teams/{{detailsTeam.id}}/edit"><button class="btn btn-primary">Edit</button></a>
     <a href="/"><button class="btn btn-link">Home</button></a>

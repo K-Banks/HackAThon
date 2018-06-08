@@ -81,15 +81,15 @@ public class App {
 //            model.put("detailsTeam", detailsTeam);
 //            return new ModelAndView(model, "editTeamDetails.hbs");
 //        }, new HandlebarsTemplateEngine());
-//
-//        //Routing to remove a team
-//        get("/teams/:teamName/delete", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            Team deleteTeam = Team.getTeamByTeamName(request.params("teamName"));
-//            Team.deleteTeam(deleteTeam);
-//            model.put("deletedTeam", true);
-//            return new ModelAndView(model, "success.hbs");
-//        }, new HandlebarsTemplateEngine());
+
+        //Routing to remove a team
+        get("/teams/:teamId/delete", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int deleteTeamId = Integer.parseInt(request.params("teamId"));
+            teamDao.deleteById(deleteTeamId);
+            response.redirect("/teams");
+            return null;
+        }, new HandlebarsTemplateEngine());
 //
         //Form submission for new teams
         post("/teams", (request, response) -> {
