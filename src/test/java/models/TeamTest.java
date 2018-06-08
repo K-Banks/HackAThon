@@ -26,31 +26,31 @@ public class TeamTest {
     }
 
     @Test
-    public void getTeamName_returnsTeamName_true() {
+    public void getName_returnsName_true() {
         Team newTeam = setupNewTeam();
-        assertTrue(newTeam.getTeamName() instanceof String);
+        assertTrue(newTeam.getName() instanceof String);
     }
 
     @Test
-    public void getTeamDescription_returnsTeamDescription_true() {
+    public void getDescription_returnsDescription_true() {
         Team newTeam = setupNewTeam();
-        assertTrue(newTeam.getTeamDescription() instanceof String);
+        assertTrue(newTeam.getDescription() instanceof String);
     }
 
     @Test
-    public void setTeamName_setsTeamNameAsNewString_true() {
+    public void setName_setsNameAsNewString_true() {
         Team newTeam = setupNewTeam();
         String expected = "New Team Name";
-        newTeam.setTeamName(expected);
-        assertTrue(newTeam.getTeamName().equals(expected));
+        newTeam.setName(expected);
+        assertTrue(newTeam.getName().equals(expected));
     }
 
     @Test
-    public void setTeamDescription_setsNewTeamDescription_equalsTrue() {
+    public void setDescription_setsNewDescription_equalsTrue() {
         Team newTeam = setupNewTeam();
         String expected = "new Team Description";
-        newTeam.setTeamDescription(expected);
-        assertTrue(newTeam.getTeamDescription().equals(expected));
+        newTeam.setDescription(expected);
+        assertTrue(newTeam.getDescription().equals(expected));
     }
 
     @Test

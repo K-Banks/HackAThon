@@ -29,3 +29,12 @@ public class Sql2oMemberDaoTest {
     public void tearDown() throws Exception {
         con.close();
     }
+
+    @Test
+    public void name() {
+    }
+
+    private Member setUpNewMember() {
+        return new Member();
+    }
+}

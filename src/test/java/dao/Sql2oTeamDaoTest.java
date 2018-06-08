@@ -28,4 +28,20 @@ public class Sql2oTeamDaoTest {
     public void tearDown() throws Exception {
         con.close();
     }
+
+    @Test
+    public void add_setsId_1() {
+        Team newTeam = setUpNewTeam();
+        teamDao.add(newTeam);
+        assertEquals(1, newTeam.getId());
+    }
+
+    @Test
+    public void getAll_returnsEmptyList() {
+        assertEquals(0, teamDao.getAll().size());
+    }
+
+    private Team setUpNewTeam() {
+        return new Team("teamName", "teamDescription");
+    }
 }
