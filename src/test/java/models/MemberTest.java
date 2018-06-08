@@ -41,6 +41,13 @@ public class MemberTest {
         assertFalse(member.getAbout().equals("about me"));
     }
 
+    @Test
+    public void setTeamId_setsNewValueForTeamIdForMember() {
+        Member member = setupNewMember();
+        member.setTeamId(1);
+        assertFalse(member.getId()==2);
+    }
+
     private Member setupNewMember() {
         return new Member("Kayl", "kayleubanks@gmail.com", "about me", 2);
     }

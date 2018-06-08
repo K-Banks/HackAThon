@@ -50,6 +50,14 @@ public class Member {
         this.about = about;
     }
 
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
