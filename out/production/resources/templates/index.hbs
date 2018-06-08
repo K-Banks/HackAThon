@@ -1,0 +1,40 @@
+{{#if manualNav}}
+    {{#partial "nav"}}
+        <li role="presentation" class=""><a href="/">Home</a></li>
+        <li role="presentation" class=""><a href="/about">About Time2Hack</a></li>
+        <li role="presentation" class="active"><a href="/teams">Teams</a></li>
+    {{/partial}}
+{{/if}}
+
+{{#partial "content"}}
+    {{#if manualNav}}
+        <h2><strong>Here are the list of teams participating in Time2Hack</strong></h2>
+    {{else}}
+        <h3>Welcome to the least exclusive Hack-A-Thon on the web!</h3>
+        <h4>Grab your friends (or the people immediately to your left) and make a team, it's time to hack.</h4>
+    {{/if}}
+        <a href="/teams/new"><button class="btn btn-info">Create my team!</button></a>
+
+    {{#if Team}}
+        <h2><large>Current Teams:</large></h2>
+        <ul>
+            {{#each Team}}
+                <li>
+                    <h2><strong>{{this.teamName}}</strong></h2>
+                    <h3><small>Team description: </small>{{this.teamDescription}}</h3>
+                    {{#if manualNav}}
+                        <ul>Members:
+                            {{#each this.members}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                    <a href="/teams/{{this.teamName}}"><button class="btn btn-info">Details</button></a>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+
+{{/partial}}
+
+{{> layout.hbs}}

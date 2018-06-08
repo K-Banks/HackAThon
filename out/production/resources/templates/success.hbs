@@ -1,0 +1,23 @@
+{{#partial "nav"}}
+    <li role="presentation" class=""><a href="/">Home</a></li>
+    <li role="presentation" class=""><a href="/about">About Time2Hack</a></li>
+    <li role="presentation" class="active"><a href="/teams">Teams</a></li>
+{{/partial}}
+
+{{#partial "content"}}
+    {{#if invalidSubmission}}
+        <h2>Sorry, your submission was invalid. Please be sure to submit a valid team name. Valid team names have at least 1 letter and require at least 1 member.</h2>
+        <a href="/teams/new">Try again?</a>
+    {{else}}
+        {{#if deletedTeam}}
+            <h2>You were not ready. Time2Hack does not accept the unprepared.</h2>
+        {{else}}
+            <h1>Success!, your team ({{newTeam.teamName}}) has been added to the event.</h1>
+            <a href="/teams/{{newTeam.teamName}}">View your team details.</a>
+        {{/if}}
+    {{/if}}
+        <br>
+        <a href="/">Home</a>
+{{/partial}}
+
+{{> layout.hbs}}
