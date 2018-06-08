@@ -154,6 +154,16 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //GET member details page
+        get("/teams/:teamId/members/:memberId", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int teamId = Integer.parseInt(request.params("teamId"));
+            int memberId = Integer.parseInt(request.params("memberId"));
+            Team team = teamDao.findById(teamId);
+            Member member = memberDao.findById(memberId);
+            model.put("team", team);
+            model.put("member", member);
+            return new ModelAndView(model, "member-detail.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //GET member add form from team details page
         get("/teams/:teamId/members/add", (request, response) -> {
@@ -167,6 +177,8 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //POST member edit
+
+        //GET member edit form
 
         //GET member delete
     }
