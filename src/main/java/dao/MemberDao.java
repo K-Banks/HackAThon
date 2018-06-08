@@ -13,6 +13,7 @@ public interface MemberDao {
 
     // READ
     Member findById(int id);
+    List<Member> findByTeamId(int teamId);
 
     //UPDATE
     void update(int id, String name, String email, String about, int teamId);
