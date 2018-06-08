@@ -77,6 +77,18 @@ public class Sql2oMemberDaoTest {
         assertFalse(memberDao.getAll().get(1).getId()==member2.getId());
     }
 
+    @Test
+    public void clearAllMember_removesAllMembersFromDatabase() {
+        Member member = setupNewMember();
+        Member member2 = setupNewMember();
+        Member member3 = setupNewMember();
+        memberDao.add(member);
+        memberDao.add(member2);
+        memberDao.add(member3);
+        memberDao.clearAllMembers();
+        assertEquals(0, memberDao.getAll().size());
+    }
+
     private Member setupNewMember() {
         return new Member("Kayl", "kayleubanks@gmail.com", "about me", 2);
     }
