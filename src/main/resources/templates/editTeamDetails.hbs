@@ -25,7 +25,7 @@
         <hr>
         <ul> Current members:
             {{#each members}}
-                <li><input type="text" name="currentMember{{@index}}" value="{{name}}"><button class="btn-sm btn-default"><a href="/teams/{{detailsTeam.id}}/members/{{id}}/delete">Remove Member</a></button></li>
+                <li><input type="text" name="currentMember{{@index}}" value="{{name}}"><button class="btn-sm btn-default"><a href="/teams/{{detailsTeam.id}}/member/{{id}}/delete">Remove Member</a></button></li>
             {{/each}}
         </ul>
     {{/if}}

@@ -1,5 +1,5 @@
 {{#partial "title"}}
-    Time2Hack: {{team.name}}
+    Time2Hack: {{member.name}}
 {{/partial}}
 
 {{#partial "nav"}}
@@ -9,29 +9,56 @@
 {{/partial}}
 
 {{#partial "content"}}
-    <form action="/teams/{{team.id}}/members/add" method="post">
-        <label for="teamMembers">Add another team member below:</label>
+    {{#if edit}}
+        <form action="/teams/{{team.id}}/members/{{member.id}}" method="post">
+            <label for="teamMembers">Edit member details below:</label>
+            <br>
+            <br>
+            <input type="text" name="memberName" id="memberName" value="{{member.name}}">
+            <br>
+            <br>
+            <label for="memberEmail">Update email:</label>
+            <br>
+            <br>
+            <input type="text" name="memberEmail" id="memberEmail" value="{{member.email}}">
+            <br>
+            <br>
+            <label for="memberAbout">Update about:</label>
+            <br>
+            <br>
+            <input type="text" name="memberAbout" id="memberAbout" value="{{member.about}}">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-info">Submit changes</button>
+        </form>
         <br>
+        <button class="btn-warning"><a href="/teams/{{team.id}}/members/{{member.id}}/delete">Delete this member</a></button>
+        <button class="btn btn-default"><a href="/teams/{{team.id}}/members/{{member.id}}">Exit form</a></button>
+    {{else}}
+        <form action="/teams/{{team.id}}/members/add" method="post">
+            <label for="teamMembers">Add another team member below:</label>
+            <br>
+            <br>
+            <input type="text" name="memberName" id="memberName" placeholder="Name">
+            <br>
+            <br>
+            <label for="memberEmail">Enter new member email:</label>
+            <br>
+            <br>
+            <input type="text" name="memberEmail" id="memberEmail">
+            <br>
+            <br>
+            <label for="memberAbout">Give a few details about new member:</label>
+            <br>
+            <br>
+            <input type="text" name="memberAbout" id="memberAbout">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-info">Add new member</button>
+        </form>
         <br>
-        <input type="text" name="memberName" id="memberName" placeholder="Name">
-        <br>
-        <br>
-        <label for="memberEmail">Enter new member email:</label>
-        <br>
-        <br>
-        <input type="text" name="memberEmail" id="memberEmail">
-        <br>
-        <br>
-        <label for="memberAbout">Give a few details about new member:</label>
-        <br>
-        <br>
-        <input type="text" name="memberAbout" id="memberAbout">
-        <br>
-        <br>
-        <button type="submit" class="btn btn-info">Add new member</button>
-    </form>
-    <br>
-    <button class="btn btn-default"><a href="/teams/{{team.id}}">Exit form</a></button>
+        <button class="btn btn-default"><a href="/teams/{{team.id}}">Exit form</a></button>
+    {{/if}}
 {{/partial}}
 
 {{> layout.hbs}}

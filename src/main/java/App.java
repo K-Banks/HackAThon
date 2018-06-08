@@ -74,7 +74,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //Routing for removing a team member
-        get("/teams/:teamId/members/:memberId/delete", (request, response) -> {
+        get("/teams/:teamId/member/:memberId/delete", (request, response) -> {
             int teamId = Integer.parseInt(request.params("teamId"));
             int memberId = Integer.parseInt(request.params("memberId"));
             memberDao.deleteById(memberId);
@@ -177,9 +177,43 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //POST member edit
+        post("/teams/:teamId/members/:memberId", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int teamId = Integer.parseInt(request.params("teamId"));
+            int memberId = Integer.parseInt(request.params("memberId"));
+            String name = request.queryParams("memberName");
+            String email = request.queryParams("memberEmail");
+            String about = request.queryParams("memberAbout");
+
+            if (name.equals("") || !email.contains("@")) {
+                model.put("team", teamDao.findById(teamId));
+                model.put("member", memberDao.findById(memberId));
+                return new ModelAndView(model, "success.hbs");
+            } else {
+                memberDao.update(memberId, name, email, about, teamId);
+                response.redirect("/teams/" + teamId + "/members/" + memberId);
+                return null;
+            }
+        }, new HandlebarsTemplateEngine());
 
         //GET member edit form
+        get("/teams/:teamId/members/:memberId/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int teamId = Integer.parseInt(request.params("teamId"));
+            int memberId = Integer.parseInt(request.params("memberId"));
+            model.put("member", memberDao.findById(memberId));
+            model.put("edit", true);
+            model.put("team", teamDao.findById(teamId));
+            return new ModelAndView(model, "new-member-form.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //GET member delete
+        get("/teams/:teamId/members/:memberId/delete", (request, response) -> {
+            int teamId = Integer.parseInt(request.params("teamId"));
+            int memberId = Integer.parseInt(request.params("memberId"));
+            memberDao.deleteById(memberId);
+            response.redirect("/teams/"+teamId);
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }

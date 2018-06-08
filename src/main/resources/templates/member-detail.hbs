@@ -1,5 +1,5 @@
 {{#partial "title"}}
-    Time2Hack: {{team.name}}
+    Time2Hack: {{member.name}}
 {{/partial}}
 
 {{#partial "nav"}}
@@ -15,8 +15,8 @@
     <h2><small>About: {{member.about}}</small></h2>
     <h3>Member of team: {{team.name}}</h3>
 
-    <a href="/teams/{{detailsTeam.id}}/members/{{member.id}}/edit"><button class="btn btn-primary">Edit Member Details</button></a>
-    <a href="/teams/{{detailsTeam.id}}"><button class="btn btn-info">Team details</button></a>
+    <a href="/teams/{{team.id}}/members/{{member.id}}/edit"><button class="btn btn-primary">Edit Member Details</button></a>
+    <a href="/teams/{{team.id}}"><button class="btn btn-info">Team details</button></a>
     <a href="/"><button class="btn btn-link">Home</button></a>
 {{/partial}}
 

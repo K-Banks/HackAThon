@@ -9,12 +9,8 @@
         <h2>Sorry, your submission was invalid. Please be sure to submit a valid team name and to include a name and email address for a member of the team. Valid names have at least 1 letter and valid email addresses must contain the "@" sign.</h2>
         <a href="/teams/new">Try again?</a>
     {{else}}
-        {{#if deletedTeam}}
-            <h2>You were not ready. Time2Hack does not accept the unprepared.</h2>
-        {{else}}
-            <h1>Success!, your team ({{newTeam.teamName}}) has been added to the event.</h1>
-            <a href="/teams/{{newTeam.teamName}}">View your team details.</a>
-        {{/if}}
+        <h2>Sorry, your submission was invalid. Please be sure to submit a valid name and email address for this member of the team. Valid names have at least 1 letter and valid email addresses must contain the "@" sign.</h2>
+        <a href="/teams/{{team.id}}/members/{{member.id}}/edit">Try again</a>
     {{/if}}
         <br>
         <a href="/">Home</a>
