@@ -61,6 +61,15 @@ public class Sql2oTeamDaoTest {
         assertEquals(foundTeam.getName(), team2.getName());
     }
 
+    @Test
+    public void update_updatesTeamWithNewInformation() {
+        Team newTeam = setUpNewTeam();
+        String newName = "IS THIS WORKING YET?";
+        teamDao.add(newTeam);
+        teamDao.update(newTeam.getId(), newName, newTeam.getDescription());
+        assertEquals(newName, teamDao.findById(newTeam.getId()).getName());
+    }
+
     private Team setUpNewTeam() {
         return new Team("teamName", "teamDescription");
     }
