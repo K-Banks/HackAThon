@@ -5,6 +5,7 @@ import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import javax.jws.WebParam;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,15 +45,15 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-//        // Dynamic routing for team details
-//        get("/teams/:teamName", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            String searchTeamName = request.params("teamName");
-//            Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
-//            model.put("detailsTeam", detailsTeam);
-//            return new ModelAndView(model, "teamDetails.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
+        // Dynamic routing for team details
+        get("/teams/:teamId", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int searchTeamId = Integer.parseInt(request.params("teamId"));
+            Team detailsTeam = teamDao.findById(searchTeamId);
+            model.put("detailsTeam", detailsTeam);
+            return new ModelAndView(model, "teamDetails.hbs");
+        }, new HandlebarsTemplateEngine());
+
 //        // Routing for editing team details form
 //        get("/teams/:teamName/edit", (request, response) -> {
 //            Map<String, Object> model = new HashMap<>();
@@ -86,42 +87,29 @@ public class App {
 //            return new ModelAndView(model, "success.hbs");
 //        }, new HandlebarsTemplateEngine());
 //
-//        //Form submission for new teams
-//        post("/teams", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            List<String> members = new ArrayList<>();
-//
-//            String teamName = request.queryParams("teamName");
-//            String teamDescription = request.queryParams("teamDescription");
-//
-//            if (!request.queryParams("teamMembers").equals("")) {
-//                members.add(request.queryParams("teamMembers"));
-//            }
-//            if (!request.queryParams("teamMembers2").equals("")) {
-//                members.add(request.queryParams("teamMembers2"));
-//            }
-//            if (!request.queryParams("teamMembers3").equals("")) {
-//                members.add(request.queryParams("teamMembers3"));
-//            }
-//            if (!request.queryParams("teamMembers4").equals("")) {
-//                members.add(request.queryParams("teamMembers4"));
-//            }
-//            if (!request.queryParams("teamMembers5").equals("")) {
-//                members.add(request.queryParams("teamMembers5"));
-//            }
-//
-//            if (teamName.equals("") || members.size()==0){
-//                model.put("invalidSubmission", true);
-//            } else {
-//                Team newTeam = new Team(members, teamName, teamDescription);
-//                model.put("newTeam", newTeam);
-//            }
-//
-//            List<Team> team = Team.getTeams();
-//            model.put("Team", team);
-//
-//            return new ModelAndView(model, "success.hbs");
-//        }, new HandlebarsTemplateEngine());
+        //Form submission for new teams
+        post("/teams", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            String teamName = request.queryParams("teamName");
+            String teamDescription = request.queryParams("teamDescription");
+            String memberName = request.queryParams("memberName");
+            String memberEmail = request.queryParams("memberEmail");
+            String memberAbout = request.queryParams("memberAbout");
+
+            if (teamName.equals("") || memberName.equals("") || memberEmail.equals("") || !memberEmail.contains("@")){
+                model.put("invalidSubmission", true);
+                return new ModelAndView(model, "success.hbs");
+            } else {
+                Team newTeam = new Team(teamName, teamDescription);
+                teamDao.add(newTeam);
+                Member newMember = new Member(memberName, memberEmail, memberAbout, newTeam.getId());
+                memberDao.add(newMember);
+            }
+
+            response.redirect("/teams");
+            return null;
+        }, new HandlebarsTemplateEngine());
 //
 //        // Form submission for team detail edits
 //        post("/teams/:teamName", (request, response) -> {
