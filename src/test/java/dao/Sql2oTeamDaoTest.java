@@ -70,6 +70,19 @@ public class Sql2oTeamDaoTest {
         assertEquals(newName, teamDao.findById(newTeam.getId()).getName());
     }
 
+    @Test
+    public void deleteById_removesTeamFromTeams() {
+        Team newTeam = setUpNewTeam();
+        Team newTeam2 = new Team ("delete this", "delete this");
+        Team newTeam3 = setUpNewTeam();
+        teamDao.add(newTeam);
+        teamDao.add(newTeam2);
+        teamDao.add(newTeam3);
+        teamDao.deleteById(newTeam2.getId());
+        assertEquals(2, teamDao.getAll().size());
+        assertNotEquals(newTeam2.getName(), teamDao.getAll().get(1).getName());
+    }
+
     private Team setUpNewTeam() {
         return new Team("teamName", "teamDescription");
     }
