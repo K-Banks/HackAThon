@@ -23,6 +23,7 @@ public class Team {
         teams.add(this);
     }
 
+
     public String getTeamName() {
         return teamName;
     }
@@ -40,7 +41,7 @@ public class Team {
     }
 
     public void addNewMember(String newMember) {
-        if (!newMember.equals("")) {
+        if (!newMember.equals("") && !newMember.equals(null)) {
             this.members.add(newMember);
         }
     }

@@ -86,12 +86,22 @@ public class App {
 
             String teamName = request.queryParams("teamName");
             String teamDescription = request.queryParams("teamDescription");
-            members.add(request.queryParams("teamMembers"));
-            members.add(request.queryParams("teamMembers2"));
-            members.add(request.queryParams("teamMembers3"));
-            members.add(request.queryParams("teamMembers4"));
-            members.add(request.queryParams("teamMembers5"));
 
+            if (!request.queryParams("teamMembers").equals("")) {
+                members.add(request.queryParams("teamMembers"));
+            }
+            if (!request.queryParams("teamMembers2").equals("")) {
+                members.add(request.queryParams("teamMembers2"));
+            }
+            if (!request.queryParams("teamMembers3").equals("")) {
+                members.add(request.queryParams("teamMembers3"));
+            }
+            if (!request.queryParams("teamMembers4").equals("")) {
+                members.add(request.queryParams("teamMembers4"));
+            }
+            if (!request.queryParams("teamMembers5").equals("")) {
+                members.add(request.queryParams("teamMembers5"));
+            }
 
             if (teamName.equals("") || members.size()==0){
                 model.put("invalidSubmission", true);
