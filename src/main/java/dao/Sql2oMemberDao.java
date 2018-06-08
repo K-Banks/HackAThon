@@ -49,7 +49,18 @@ public class Sql2oMemberDao implements MemberDao {
 
     @Override
     public void update(int id, String name, String email, String about, int teamId) {
-
+        String sql = "UPDATE members SET (name, email, about, teamId) = (:name, :email, :about, :teamId) WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("name", name)
+                    .addParameter("email", email)
+                    .addParameter("about", about)
+                    .addParameter("teamId", teamId)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override

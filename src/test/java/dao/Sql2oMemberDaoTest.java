@@ -49,6 +49,21 @@ public class Sql2oMemberDaoTest {
         assertEquals(member.getId(), memberDao.findById(1).getId());
     }
 
+    @Test
+    public void update_updatesValuesOfMember() {
+        Member member = setupNewMember();
+        String name = "Jack";
+        String about = "huh";
+        String email = "jackattack@indabox.com";
+        int teamId = 4;
+        memberDao.add(member);
+        memberDao.update(member.getId(), name, email, about, teamId);
+        assertEquals(name, memberDao.findById(member.getId()).getName());
+        assertEquals(about, memberDao.findById(member.getId()).getAbout());
+        assertEquals(email, memberDao.findById(member.getId()).getEmail());
+        assertEquals(teamId, memberDao.findById(member.getId()).getTeamId());
+    }
+
     private Member setupNewMember() {
         return new Member("Kayl", "kayleubanks@gmail.com", "about me", 2);
     }
