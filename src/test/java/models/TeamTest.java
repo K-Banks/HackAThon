@@ -17,7 +17,6 @@ public class TeamTest {
 
     @After
     public void tearDown() throws Exception {
-        Team.getTeams().clear();
     }
 
     @Test
@@ -33,25 +32,9 @@ public class TeamTest {
     }
 
     @Test
-    public void getMembers_returnsTeamMembers_true() {
-        Team newTeam = setupNewTeam();
-        List<String> expected = new ArrayList<>();
-        assertEquals(expected.getClass(), newTeam.getMembers().getClass());
-    }
-
-    @Test
     public void getTeamDescription_returnsTeamDescription_true() {
         Team newTeam = setupNewTeam();
         assertTrue(newTeam.getTeamDescription() instanceof String);
-    }
-
-    @Test
-    public void Team_instantiateNewTeamWithProvidedParameters_notEquals() {
-        Team newTeam = setupNewTeam();
-        List<String> members = new ArrayList<>();
-        members.add("Kyle");
-        Team testTeam = new Team(members, "teamName", "this is a description");
-        assertNotEquals(newTeam, testTeam);
     }
 
     @Test
@@ -63,40 +46,6 @@ public class TeamTest {
     }
 
     @Test
-    public void addNewMember_addsNewMemberToMemberListArrayInTeam_true() {
-        Team newTeam = setupNewTeam();
-        String newMember = "Hambone Fakenamington";
-        newTeam.addNewMember(newMember);
-        assertTrue(newTeam.getMembers().contains(newMember));
-    }
-
-    @Test
-    public void getTeams_returnsAllTeamObjects_3() {
-        Team newTeam = setupNewTeam();
-        Team team2 = setupNewTeam();
-        Team team3 = setupNewTeam();
-        assertTrue(Team.getTeams().contains(newTeam));
-        assertTrue(Team.getTeams().contains(team2));
-        assertTrue(Team.getTeams().contains(team3));
-        assertEquals(3, Team.getTeams().size());
-    }
-
-    @Test
-    public void getTeamByTeamName_returnsTeamObjectWithSameNameAsSubmitted_true() {
-        Team newTeam = setupNewTeam();
-        Team team2 = setupNewTeam();
-        Team team3 = setupNewTeam();
-        List<String> members = new ArrayList<>();
-        members.add("Kyle");
-        Team testTeam = new Team(members, "teamName", "this is a description");
-        Team testTeam2 = new Team(members, "THISISATEAMNAME", "huh?");
-        Team expectedTeam1 = Team.getTeamByTeamName("teamName");
-        Team expectedTeam2 = Team.getTeamByTeamName("THISISATEAMNAME");
-        assertEquals(testTeam, expectedTeam1);
-        assertEquals(testTeam2, expectedTeam2);
-    }
-
-    @Test
     public void setTeamDescription_setsNewTeamDescription_equalsTrue() {
         Team newTeam = setupNewTeam();
         String expected = "new Team Description";
@@ -105,33 +54,13 @@ public class TeamTest {
     }
 
     @Test
-    public void removeMember_removesMemberOfTeam_true() {
+    public void setId_setsNewIdForTeam() {
         Team newTeam = setupNewTeam();
-        newTeam.addNewMember("steven");
-        newTeam.addNewMember("carl");
-        newTeam.addNewMember("circus");
-        newTeam.removeMember("circus");
-        assertEquals(2, newTeam.getMembers().size());
-    }
-
-    @Test
-    public void updateMember_updatesMemberOfTeam_true() {
-        Team newTeam = setupNewTeam();
-        newTeam.addNewMember("steven");
-        newTeam.addNewMember("carl");
-        newTeam.addNewMember("serkis");
-        newTeam.updateMember("andy", 2);
-        assertTrue(newTeam.getMembers().contains("andy"));
-        assertEquals(3, newTeam.getMembers().size());
-    }
-
-    @Test
-    public void deleteTeam_removesTeamFromTeams_false() {
-        Team newTeam = setupNewTeam();
-        Team team2 = setupNewTeam();
-        Team team3 = setupNewTeam();
-        Team.deleteTeam(team2);
-        assertFalse(Team.getTeams().contains(team2));
+        int expected = 3;
+        int original = newTeam.getId();
+        newTeam.setId(expected);
+        assertNotEquals(original, newTeam.getId());
+        assertEquals(expected, newTeam.getId());
     }
 
     private Team setupNewTeam() {
