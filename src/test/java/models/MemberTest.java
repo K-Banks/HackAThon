@@ -27,6 +27,13 @@ public class MemberTest {
         assertFalse(member.getName().equals("Kayl"));
     }
 
+    @Test
+    public void setEmail_setsNewEmailForMember() {
+        Member member = setupNewMember();
+        member.setEmail("email");
+        assertFalse(member.getEmail().equals("kayleubanks@gmail.com"));
+    }
+
     private Member setupNewMember() {
         return new Member("Kayl", "kayleubanks@gmail.com", "about me", 2);
     }
