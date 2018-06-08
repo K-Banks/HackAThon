@@ -1,5 +1,5 @@
 {{#partial "title"}}
-    Time2Hack: {{detailsTeam.teamName}}
+    Time2Hack: {{detailsTeam.name}}
 {{/partial}}
 
 {{#partial "nav"}}
@@ -9,13 +9,17 @@
 {{/partial}}
 
 {{#partial "content"}}
-    <h1>{{detailsTeam.teamName}}</h1>
+    <h1>{{detailsTeam.name}}</h1>
     <br>
     <h3>About us:</h3>
-    <h4>{{detailsTeam.teamDescription}}</h4>
+    <h4>{{detailsTeam.description}}</h4>
     <ul> <h4>Team Members:</h4>
-        {{#each detailsTeam.members}}
-            <li>{{this}}</li>
+        {{#each members}}
+            <li>
+                <h4><small>{{name}}</small></h4>
+                <h5>{{email}}</h5>
+                <a href="/teams/{{detailsTeam.name}}/members/{{id}}">Details</a>
+            </li>
         {{/each}}
         <form action="/teams/{{detailsTeam.teamName}}/addMember" method="post">
             <label for="newMember">Add a new member:</label>
@@ -23,7 +27,7 @@
             <button type="submit" class="btn-sm btn-warning">Add</button>
         </form>
     </ul>
-    <a href="/teams/{{detailsTeam.teamName}}/edit"><button class="btn btn-primary">Edit</button></a>
+    <a href="/teams/{{detailsTeam.id}}/edit"><button class="btn btn-primary">Edit</button></a>
     <a href="/"><button class="btn btn-link">Home</button></a>
 {{/partial}}
 

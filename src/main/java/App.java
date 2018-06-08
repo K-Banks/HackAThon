@@ -51,24 +51,28 @@ public class App {
             int searchTeamId = Integer.parseInt(request.params("teamId"));
             Team detailsTeam = teamDao.findById(searchTeamId);
             model.put("detailsTeam", detailsTeam);
+            List<Member> membersOfTeam = memberDao.findByTeamId(searchTeamId);
+            model.put("members", membersOfTeam);
             return new ModelAndView(model, "teamDetails.hbs");
         }, new HandlebarsTemplateEngine());
 
-//        // Routing for editing team details form
-//        get("/teams/:teamName/edit", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            String searchTeamName = request.params("teamName");
-//            Team detailsTeam = Team.getTeamByTeamName(searchTeamName);
-//            model.put("detailsTeam", detailsTeam);
-//            return new ModelAndView(model, "editTeamDetails.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        //Routing for about page
-//        get("/about", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            return new ModelAndView(model, "about.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
+        // Routing for editing team details form
+        get("/teams/:teamId/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int searchTeamId = Integer.parseInt(request.params("teamId"));
+            Team detailsTeam = teamDao.findById(searchTeamId);
+            model.put("detailsTeam", detailsTeam);
+            List<Member> members = memberDao.findByTeamId(searchTeamId);
+            model.put("members", members);
+            return new ModelAndView(model, "editTeamDetails.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //Routing for about page
+        get("/about", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "about.hbs");
+        }, new HandlebarsTemplateEngine());
+
 //        //Routing for removing a team member
 //        get("/teams/:team/removeMember/:member", (request, response) -> {
 //            Map<String, Object> model = new HashMap<>();
@@ -151,5 +155,13 @@ public class App {
 //            model.put("detailsTeam", detailsTeam);
 //            return new ModelAndView(model, "teamDetails.hbs");
 //        }, new HandlebarsTemplateEngine());
+
+        //GET member details page
+
+        //POST new member from team details page
+
+        //POST member edit
+
+        //GET member delete
     }
 }

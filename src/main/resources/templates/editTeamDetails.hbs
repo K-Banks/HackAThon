@@ -1,5 +1,5 @@
 {{#partial "title"}}
-    Time2Hack: {{detailsTeam.teamName}}
+    Time2Hack: {{detailsTeam.name}}
 {{/partial}}
 
 {{#partial "nav"}}
@@ -9,41 +9,46 @@
 {{/partial}}
 
 {{#partial "content"}}
-    <form action="/teams/{{detailsTeam.teamName}}" method="post">
+    <form action="/teams/{{detailsTeam.id}}" method="post">
         <label for="teamName">Team name:</label>
-        <input type="text" id="teamName" name="teamName" value="{{detailsTeam.teamName}}">
+        <input type="text" id="teamName" name="teamName" value="{{detailsTeam.name}}">
         <br>
         <hr>
         <label for="teamDescription">Description of your team:</label>
-        <input name="teamDescription" id="teamDescription" class="form-control" value="{{detailsTeam.teamDescription}}">
+        <input name="teamDescription" id="teamDescription" class="form-control" value="{{detailsTeam.description}}">
         <br>
-        <hr>
-        <ul> Current members:
-            {{#each detailsTeam.members}}
-                <li><input type="text" name="currentMember{{@index}}" value="{{this}}"><button class="btn-sm btn-default"><a href="/teams/{{detailsTeam.teamName}}/removeMember/{{this}}">Remove Member</a></button></li>
-            {{/each}}
-        </ul>
-        <label for="teamMembers">Add your team members below:</label>
-        <br>
-        <br>
-        <input type="text" name="teamMembers" id="teamMembers">
-        <br>
-        <br>
-        <input type="text" name="teamMembers2" id="teamMembers2">
-        <br>
-        <br>
-        <input type="text" name="teamMembers3" id="teamMembers3">
-        <br>
-        <br>
-        <input type="text" name="teamMembers4" id="teamMembers4">
-        <br>
-        <br>
-        <input type="text" name="teamMembers5" id="teamMembers5">
-        <br>
-        <br>
-        <button type="submit" class="btn btn-info">Submit</button>
+        <button type="submit" class="btn btn-info">Submit changes</button>
     </form>
-        <button class="btn-sm btn-danger"><a href="/teams/{{detailsTeam.teamName}}/delete">Delete my team</a></button>
+    <br>
+    <button class="btn-sm btn-danger"><a href="/teams/{{detailsTeam.teamName}}/delete">Delete my team</a></button>
+    <hr>
+    <ul> Current members:
+        {{#each members}}
+            <li><input type="text" name="currentMember{{@index}}" value="{{name}}"><button class="btn-sm btn-default"><a href="/teams/{{detailsTeam.id}}/removeMember/{{id}}">Remove Member</a></button></li>
+        {{/each}}
+    </ul>
+    <hr>
+    <form action="/teams/{{detailsTeam.id}}/members/add"></form>
+        <label for="teamMembers">Add another team member below:</label>
+        <br>
+        <br>
+        <input type="text" name="memberName" id="memberName" placeholder="Name">
+        <br>
+        <br>
+        <label for="memberEmail">Enter new member email:</label>
+        <br>
+        <br>
+        <input type="text" name="memberEmail" id="memberEmail">
+        <br>
+        <br>
+        <label for="memberAbout">Give a few details about yourself:</label>
+        <br>
+        <br>
+        <input type="text" name="memberAbout" id="memberAbout">
+        <br>
+        <br>
+        <button type="submit" class="btn btn-info">Add new member</button>
+    </form>
 {{/partial}}
 
 {{> layout.hbs}}
