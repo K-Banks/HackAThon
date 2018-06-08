@@ -37,7 +37,7 @@ _This application is designed for organizing teams for a Hack-A-Thon style event
 
 ## Specs
  * User will be able to create a new team. Upon creation, user will provide:
-    * A list of member names
+    * A member submission
     * A team name
     * A brief description of the team
  * User will be able to add or remove members of the team after initial submission.
@@ -45,10 +45,11 @@ _This application is designed for organizing teams for a Hack-A-Thon style event
  * User will be able to change description of the team after initial submission.
  * User will be able to delete team after initial submission.
  * User will be required to enter a valid team name and at least one member upon new team submission
+ * User will be able to update or delete details for each member of the team.
 
 ## Known Bugs
 
-_No known bugs at this time._
+_Can delete the only member._
 _Please contact author at kayleubanks@gmail.com with any bugs._
 
 ## Technologies Used
