@@ -1,42 +1,49 @@
-//import models.Team;
-//
-//import spark.ModelAndView;
-//import spark.template.handlebars.HandlebarsTemplateEngine;
-//
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//
-//import static spark.Spark.*;
-//
-//public class App {
-//    public static void main(String[] args) {
-//        staticFileLocation("/public");
-//
-//        // Routing for homepage
-//        get("/", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            List<Team> team = Team.getTeams();
-//            model.put("Team", team);
-//            return new ModelAndView(model, "index.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        // Routing for new team form
-//        get("/teams/new", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            return new ModelAndView(model, "newTeamForm.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        // Routing for teams page using nav tab
-//        get("/teams", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            List<Team> team = Team.getTeams();
-//            model.put("Team", team);
-//            model.put("manualNav", true);
-//            return new ModelAndView(model, "index.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
+import models.*;
+import dao.Sql2oMemberDao;
+import dao.Sql2oTeamDao;
+import org.sql2o.Sql2o;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static spark.Spark.*;
+import static spark.Spark.staticFileLocation;
+
+public class App {
+    public static void main(String[] args) {
+        staticFileLocation("/public");
+        String connectionString = "jdbc:h2:~/hack-a-thon.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        Sql2oTeamDao teamDao = new Sql2oTeamDao(sql2o);
+        Sql2oMemberDao memberDao = new Sql2oMemberDao(sql2o);
+
+        // Routing for homepage
+        get("/", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Team> team = teamDao.getAll();
+            model.put("Team", team);
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // Routing for new team form
+        get("/teams/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "newTeamForm.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // Routing for teams page using nav tab
+        get("/teams", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Team> teams = teamDao.getAll();
+            model.put("teams", teams);
+            model.put("manualNav", true);
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
 //        // Dynamic routing for team details
 //        get("/teams/:teamName", (request, response) -> {
 //            Map<String, Object> model = new HashMap<>();
@@ -156,5 +163,5 @@
 //            model.put("detailsTeam", detailsTeam);
 //            return new ModelAndView(model, "teamDetails.hbs");
 //        }, new HandlebarsTemplateEngine());
-//    }
-//}
+    }
+}
