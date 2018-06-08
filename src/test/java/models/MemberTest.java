@@ -20,6 +20,13 @@ public class MemberTest {
         assertFalse(originalId==member.getId());
     }
 
+    @Test
+    public void setName_setsNewNameForMember() {
+        Member member = setupNewMember();
+        member.setName("John");
+        assertFalse(member.getName().equals("Kayl"));
+    }
+
     private Member setupNewMember() {
         return new Member("Kayl", "kayleubanks@gmail.com", "about me", 2);
     }
