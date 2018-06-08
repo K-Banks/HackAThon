@@ -31,7 +31,12 @@ public class Sql2oMemberDaoTest {
     }
 
     @Test
-    public void name() {
+    public void getAll_returns0IfNoMembers_0() {
+        assertEquals(memberDao.getAll().size(), 0);
     }
 
+
+    private Member setupNewMember() {
+        return new Member("Kayl", "kayleubanks@gmail.com", "about me", 2);
+    }
 }
