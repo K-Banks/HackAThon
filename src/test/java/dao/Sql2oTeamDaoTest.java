@@ -41,6 +41,26 @@ public class Sql2oTeamDaoTest {
         assertEquals(0, teamDao.getAll().size());
     }
 
+    @Test
+    public void getAll_returnsAllTeams_2() {
+        Team newTeam = setUpNewTeam();
+        Team newTeam2 = setUpNewTeam();
+        teamDao.add(newTeam);
+        teamDao.add(newTeam2);
+        assertEquals(2, teamDao.getAll().size());
+        assertTrue(newTeam.getName().equals(teamDao.getAll().get(0).getName()));
+    }
+
+    @Test
+    public void findById_returnsTeamWithCorrectId_true() {
+        Team newTeam = setUpNewTeam();
+        Team team2 = new Team("Monstars", "space jam");
+        teamDao.add(newTeam);
+        teamDao.add(team2);
+        Team foundTeam = teamDao.findById(2);
+        assertEquals(foundTeam.getName(), team2.getName());
+    }
+
     private Team setUpNewTeam() {
         return new Team("teamName", "teamDescription");
     }
