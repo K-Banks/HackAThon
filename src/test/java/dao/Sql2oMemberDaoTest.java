@@ -34,7 +34,4 @@ public class Sql2oMemberDaoTest {
     public void name() {
     }
 
-    private Member setUpNewMember() {
-        return new Member();
-    }
 }
