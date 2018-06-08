@@ -114,39 +114,25 @@ public class App {
             response.redirect("/teams");
             return null;
         }, new HandlebarsTemplateEngine());
-//
-//        // Form submission for team detail edits
-//        post("/teams/:teamName", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            Team detailsTeam = Team.getTeamByTeamName(request.params("teamName"));
-//            String newTeamName = request.queryParams("teamName");
-//            String newTeamDescription = request.queryParams("teamDescription");
-//            List<String> newMembers = new ArrayList<>();
-//
-//            newMembers.add(request.queryParams("teamMembers"));
-//            newMembers.add(request.queryParams("teamMembers2"));
-//            newMembers.add(request.queryParams("teamMembers3"));
-//            newMembers.add(request.queryParams("teamMembers4"));
-//            newMembers.add(request.queryParams("teamMembers5"));
-//
-//            for (int i=0; i<detailsTeam.getMembers().size(); i++) {
-//                String currentMember = "currentMember" + (i);
-//                String newMemberName = request.queryParams(currentMember);
-//                detailsTeam.updateMember(newMemberName, i);
-//            }
-//
-//            for (String newMember: newMembers) {
-//                detailsTeam.addNewMember(newMember);
-//            }
-//
-//            detailsTeam.setTeamName(newTeamName);
-//            detailsTeam.setTeamDescription(newTeamDescription);
-//
-//            model.put("detailsTeam", detailsTeam);
-//
-//            return new ModelAndView(model, "teamDetails.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
+
+        // Form submission for team detail edits
+        post("/teams/:teamId", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int teamId = Integer.parseInt(request.params("teamId"));
+            String newName = request.queryParams("teamName");
+            String newDescription = request.queryParams("teamDescription");
+
+            if (newName.equals("")) {
+                model.put("invalidSubmission", true);
+                return new ModelAndView(model,"success.hbs");
+            } else {
+                teamDao.update(teamId, newName, newDescription);
+            }
+
+            response.redirect("/teams/" + teamId);
+            return null;
+        }, new HandlebarsTemplateEngine());
+
 //        //Form submission for single member addition to a team
 //        post("/teams/:teamName/addMember", (request, response) -> {
 //            Map<String, Object> model = new HashMap<>();
